@@ -1,0 +1,10 @@
+<div th:fragment="formType">
+	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${postRequestType}" id="collapseExample" action="/PokemonApp/types" method="POST">
+		<div class="form-floating mb-3">
+		  <input th:field="*{fName}" type="text" class="form-control" id="fName" name="fName" placeholder="Name">
+		  <label for="fName">Name</label>
+		</div>
+		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
+		<button type="submit" class="btn btn-primary mb-3">Submit</button>
+	</form>
+</div>
