@@ -2,12 +2,12 @@ package com.humberto.pokemon.PokemonApp.RequestModels;
 
 import com.humberto.pokemon.PokemonApp.Models.Type;
 
-public class PostRequestType {
+public class TypeDto {
 	
 	private Long fId;
 	private String fName;
 	
-	public PostRequestType(Long fId, String fName) {
+	public TypeDto(Long fId, String fName) {
 		this.fId = fId;
 		this.fName = fName;
 	}

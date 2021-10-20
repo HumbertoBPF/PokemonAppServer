@@ -1,6 +1,8 @@
 package com.humberto.pokemon.PokemonApp.Models;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +18,7 @@ public class Move {
 	private String name;
 	@ManyToOne
 	private Type type;
+	@Enumerated(EnumType.STRING)
 	private CategoryMove category;
 	private Long power;
 	private Integer accuracy;
@@ -23,9 +26,16 @@ public class Move {
 	public Move() {
 	}
 
-	public Move(String name, Type type, CategoryMove category, Long power, Integer accuracy) {
+	public Move(Long id, String name, CategoryMove category, Long power, Integer accuracy) {
+		this.id = id;
 		this.name = name;
-		this.type = type;
+		this.category = category;
+		this.power = power;
+		this.accuracy = accuracy;
+	}
+	
+	public Move(String name, CategoryMove category, Long power, Integer accuracy) {
+		this.name = name;
 		this.category = category;
 		this.power = power;
 		this.accuracy = accuracy;

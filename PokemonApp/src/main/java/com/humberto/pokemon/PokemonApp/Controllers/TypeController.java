@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.humberto.pokemon.PokemonApp.Models.Type;
 import com.humberto.pokemon.PokemonApp.Repositories.TypeRepository;
-import com.humberto.pokemon.PokemonApp.RequestModels.PostRequestType;
+import com.humberto.pokemon.PokemonApp.RequestModels.TypeDto;
 
 @Controller
-public class GeneralController {
+public class TypeController{
 	
 	@Autowired
 	private TypeRepository typeRepository;
 	
 	@GetMapping("/PokemonApp/types")
-	public String type(Model model, PostRequestType postRequestType) {
+	public String type(Model model, TypeDto typeDto) {
 		addTypesToModel(model);
 		return "types";
 	}
 	
 	@PostMapping("/PokemonApp/types")
-	public String createType(PostRequestType postRequestType) {
-		typeRepository.save(postRequestType.toType());
+	public String createType(TypeDto typeDto) {
+		typeRepository.save(typeDto.toType());
 		return "redirect:/PokemonApp/types";
 	}
 	
@@ -39,9 +39,9 @@ public class GeneralController {
 	}
 	
 	@GetMapping("/PokemonApp/types/update/{id}")
-	public String updateType(@PathVariable Long id, PostRequestType postRequestType, Model model) {
+	public String updateType(@PathVariable Long id, TypeDto typeDto, Model model) {
 		Type type = typeRepository.findById(id).get();
-		postRequestType.fromType(type);
+		typeDto.fromType(type);
 		addTypesToModel(model);
 		model.addAttribute("collapseForm",true);
 		return "types";

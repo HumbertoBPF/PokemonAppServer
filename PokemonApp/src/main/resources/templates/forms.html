@@ -1,9 +1,52 @@
 <div th:fragment="formType">
-	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${postRequestType}" id="collapseExample" action="/PokemonApp/types" method="POST">
+	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${typeDto}" id="collapseExample" action="/PokemonApp/types" method="POST">
 		<div class="form-floating mb-3">
 		  <input th:field="*{fName}" type="text" class="form-control" id="fName" name="fName" placeholder="Name">
 		  <label for="fName">Name</label>
 		</div>
+		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
+		<button type="submit" class="btn btn-primary mb-3">Submit</button>
+	</form>
+</div>
+
+<div th:fragment="formMove">
+	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${moveDto}" id="collapseExample" action="/PokemonApp/moves" method="POST">
+		<div class="form-floating mb-3">
+		  <input th:field="*{fName}" type="text" class="form-control" id="fName" name="fName" placeholder="Input the move name">
+		  <label for="fName">Name</label>
+		</div>
+		
+		<div class="mb-3">
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Physical" name="fCategory" id="fPhysical" checked>
+			  <label class="form-check-label" for="fCategory">
+			    Physical
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Special" name="fCategory" id="fSpecial">
+			  <label class="form-check-label" for="fCategory">
+			    Special
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Status" name="fCategory" id="fStatus">
+			  <label class="form-check-label" for="fCategory">
+			    Status
+			  </label>
+			</div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fPower}" type="number" class="form-control" id="fPower" name="fPower" min="0">
+		  <label for="fPower">Power</label>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fAccuracy}" type="number" class="form-control" id="fAccuracy" name="fAccuracy" min="0" max="100">
+		  <label for="fAccuracy">Accuracy</label>
+		</div>
+		
 		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
 		<button type="submit" class="btn btn-primary mb-3">Submit</button>
 	</form>
