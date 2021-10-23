@@ -1,8 +1,9 @@
 <div th:fragment="formType">
 	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${typeDto}" id="collapseExample" action="/PokemonApp/types" method="POST">
 		<div class="form-floating mb-3">
-		  <input th:field="*{fName}" type="text" class="form-control" id="fName" name="fName" placeholder="Name">
+		  <input th:field="*{fName}" th:errorclass="is-invalid" type="text" class="form-control" id="fName" name="fName" placeholder="Name">
 		  <label for="fName">Name</label>
+		  <div class="invalid-feedback" th:errors="*{fName}"></div>
 		</div>
 		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
 		<button type="submit" class="btn btn-primary mb-3">Submit</button>
@@ -12,8 +13,9 @@
 <div th:fragment="formMove">
 	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${moveDto}" id="collapseExample" action="/PokemonApp/moves" method="POST">
 		<div class="form-floating mb-3">
-		  <input th:field="*{fName}" type="text" class="form-control" id="fName" name="fName" placeholder="Input the move name">
+		  <input th:field="*{fName}" th:errorclass="is-invalid" type="text" class="form-control" id="fName" name="fName" placeholder="Input the move name">
 		  <label for="fName">Name</label>
+		  <div class="invalid-feedback" th:errors="*{fName}"></div>
 		</div>
 		
 		<div class="mb-3">
@@ -38,13 +40,115 @@
 		</div>
 		
 		<div class="form-floating mb-3">
-		  <input th:field="*{fPower}" type="number" class="form-control" id="fPower" name="fPower" min="0">
+		  <input th:field="*{fPower}" th:errorclass="is-invalid" type="number" class="form-control" id="fPower" name="fPower" min="0" placeholder="Input the move power">
 		  <label for="fPower">Power</label>
+		  <div class="invalid-feedback" th:errors="*{fPower}"></div>
 		</div>
 		
 		<div class="form-floating mb-3">
-		  <input th:field="*{fAccuracy}" type="number" class="form-control" id="fAccuracy" name="fAccuracy" min="0" max="100">
+		  <input th:field="*{fAccuracy}" th:errorclass="is-invalid" type="number" class="form-control" id="fAccuracy" name="fAccuracy" min="0" max="100" placeholder="Input the move accuracy">
 		  <label for="fAccuracy">Accuracy</label>
+		  <div class="invalid-feedback" th:errors="*{fAccuracy}"></div>
+		</div>
+		
+		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
+		<button type="submit" class="btn btn-primary mb-3">Submit</button>
+	</form>
+</div>
+
+<div th:fragment="formPokemon">
+	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${pokemonDto}" id="collapseExample" action="/PokemonApp/pokemon" method="POST">
+		<div class="form-floating mb-3">
+		  <input th:field="*{fName}" th:errorclass="is-invalid" type="text" class="form-control" id="fName" name="fName" placeholder="Input the pokemon name">
+		  <label for="fName">Name</label>
+		  <div class="invalid-feedback" th:errors="*{fName}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fDescription}" th:errorclass="is-invalid" type="text" class="form-control" id="fDescription" name="fDescription" placeholder="Input the pokemon description">
+		  <label for="fDescription">Description</label>
+		  <div class="invalid-feedback" th:errors="*{fDescription}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fHeight}" th:errorclass="is-invalid" type="number" class="form-control" id="fHeight" name="fHeight" placeholder="Input the pokemon height">
+		  <label for="fHeight">Height</label>
+		  <div class="invalid-feedback" th:errors="*{fHeight}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fWeight}" th:errorclass="is-invalid" type="number" class="form-control" id="fWeight" name="fWeight" placeholder="Input the pokemon weight">
+		  <label for="fWeight">Weight</label>
+		  <div class="invalid-feedback" th:errors="*{fWeight}"></div>
+		</div>
+		
+		<div class="mb-3">
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Male" name="fGender" id="fMale" checked>
+			  <label class="form-check-label" for="fGender">
+			    Male
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Female" name="fGender" id="fFemale">
+			  <label class="form-check-label" for="fGender">
+			    Female
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Both" name="fGender" id="fBoth">
+			  <label class="form-check-label" for="fGender">
+			    Both
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="Unknown" name="fGender" id="fUnknown">
+			  <label class="form-check-label" for="fGender">
+			    None
+			  </label>
+			</div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fCategory}" th:errorclass="is-invalid" type="text" class="form-control" id="fCategory" name="fCategory" placeholder="Input the pokemon category">
+		  <label for="fCategory">Category</label>
+		  <div class="invalid-feedback" th:errors="*{fCategory}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fAttack}" th:errorclass="is-invalid" type="number" class="form-control" id="fAttack" name="fAttack" placeholder="Input the pokemon attack">
+		  <label for="fAttack">Attack</label>
+		  <div class="invalid-feedback" th:errors="*{fAttack}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fDefense}" th:errorclass="is-invalid" type="number" class="form-control" id="fDefense" name="fDefense" placeholder="Input the pokemon defense">
+		  <label for="fDefense">Defense</label>
+		  <div class="invalid-feedback" th:errors="*{fDefense}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fSpAttack}" th:errorclass="is-invalid" type="number" class="form-control" id="fSpAttack" name="fSpAttack" placeholder="Input the pokemon special attack">
+		  <label for="fSpAttack">Sp. Attack</label>
+		  <div class="invalid-feedback" th:errors="*{fSpAttack}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fSpDefense}" th:errorclass="is-invalid" type="number" class="form-control" id="fSpDefense" name="fSpDefense" placeholder="Input the pokemon special defense">
+		  <label for="fSpDefense">Sp. Defense</label>
+		  <div class="invalid-feedback" th:errors="*{fSpDefense}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fSpeed}" th:errorclass="is-invalid" type="number" class="form-control" id="fSpeed" name="fSpeed" placeholder="Input the pokemon speed">
+		  <label for="fSpeed">Speed</label>
+		  <div class="invalid-feedback" th:errors="*{fSpeed}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fHp}" th:errorclass="is-invalid" type="number" class="form-control" id="fHp" name="fHp" placeholder="Input the pokemon hp">
+		  <label for="fHp">Hp</label>
+		  <div class="invalid-feedback" th:errors="*{fHp}"></div>
 		</div>
 		
 		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">

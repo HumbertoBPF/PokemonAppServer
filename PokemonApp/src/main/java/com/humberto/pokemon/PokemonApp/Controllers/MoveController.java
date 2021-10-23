@@ -3,9 +3,12 @@ package com.humberto.pokemon.PokemonApp.Controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +30,12 @@ public class MoveController {
 	}
 	
 	@PostMapping("/PokemonApp/moves")
-	public String createType(MoveDto moveDto) {
+	public String createType(@Valid MoveDto moveDto, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("collapseForm",true);
+			addMovesToModel(model);
+			return "moves";
+		}
 		moveRepository.save(moveDto.toMove());
 		return "redirect:/PokemonApp/moves";
 	}
@@ -39,7 +47,7 @@ public class MoveController {
 	}
 	
 	@GetMapping("/PokemonApp/moves/update/{id}")
-	public String updateType(@PathVariable Long id, MoveDto moveDto, Model model) {
+	public String updateType(MoveDto moveDto, @PathVariable Long id, Model model) {
 		Move move = moveRepository.findById(id).get();
 		moveDto.fromMove(move);
 		addMovesToModel(model);

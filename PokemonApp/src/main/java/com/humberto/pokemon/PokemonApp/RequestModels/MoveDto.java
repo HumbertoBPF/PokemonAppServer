@@ -1,14 +1,26 @@
 package com.humberto.pokemon.PokemonApp.RequestModels;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+
 import com.humberto.pokemon.PokemonApp.Enums.CategoryMove;
 import com.humberto.pokemon.PokemonApp.Models.Move;
 
 public class MoveDto {
 
 	private Long fId;
+	@NotBlank
 	private String fName;
+	@NotBlank
 	private String fCategory;
+	@NotNull
+	@PositiveOrZero
 	private Long fPower;
+	@NotNull
+	@PositiveOrZero
+	@Max(100)
 	private Integer fAccuracy;
 	
 	public MoveDto(Long fId, String fName, String fCategory, Long fPower, Integer fAccuracy) {

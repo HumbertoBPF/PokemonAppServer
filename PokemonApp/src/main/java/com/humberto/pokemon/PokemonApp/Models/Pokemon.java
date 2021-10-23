@@ -37,6 +37,24 @@ public class Pokemon {
 	
 	public Pokemon() {
 	}
+	
+	public Pokemon(Long id, String name, String description, Double height, Double weight, Gender gender,
+			String category, Integer attack, Integer defense, Integer spAttack, Integer spDefense,
+			Integer speed, Integer hp) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.height = height;
+		this.weight = weight;
+		this.gender = gender;
+		this.category = category;
+		this.attack = attack;
+		this.defense = defense;
+		this.spAttack = spAttack;
+		this.spDefense = spDefense;
+		this.speed = speed;
+		this.hp = hp;
+	}
 
 	public Pokemon(String name, String description, Double height, Double weight, Gender gender, String category,
 			Integer attack, Integer defense, Integer spAttack, Integer spDefense, Integer speed, Integer hp) {

@@ -1,10 +1,13 @@
 package com.humberto.pokemon.PokemonApp.RequestModels;
 
+import javax.validation.constraints.NotBlank;
+
 import com.humberto.pokemon.PokemonApp.Models.Type;
 
 public class TypeDto {
 	
 	private Long fId;
+	@NotBlank
 	private String fName;
 	
 	public TypeDto(Long fId, String fName) {
