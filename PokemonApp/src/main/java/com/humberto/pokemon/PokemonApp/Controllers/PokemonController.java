@@ -1,8 +1,5 @@
 package com.humberto.pokemon.PokemonApp.Controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,53 +10,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.humberto.pokemon.PokemonApp.Models.Pokemon;
 import com.humberto.pokemon.PokemonApp.Repositories.PokemonRepository;
 import com.humberto.pokemon.PokemonApp.RequestModels.PokemonDto;
 
 @Controller
-public class PokemonController {
+public class PokemonController extends ResourceController{
 
 	@Autowired
 	private PokemonRepository pokemonRepository;
 	
 	@GetMapping("PokemonApp/pokemon")
 	private String pokemon(Model model, PokemonDto pokemonDto) {
-		addPokemonToModel(model);
-		return "pokemon";
+		return get(model, pokemonDto);
 	}
 	
 	@PostMapping("/PokemonApp/pokemon")
 	public String createType(@Valid PokemonDto pokemonDto, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			model.addAttribute("collapseForm",true);
-			addPokemonToModel(model);
-			return "pokemon";
-		}
-		System.out.println(pokemonDto.getfDescription());
-		pokemonRepository.save(pokemonDto.toPokemon());
-		return "redirect:/PokemonApp/pokemon";
+		return post(pokemonDto, result, model);
 	}
 	
 	@GetMapping("/PokemonApp/pokemon/delete/{id}")
 	public String deleteType(@PathVariable Long id) {
-		pokemonRepository.deleteById(id);
-		return "redirect:/PokemonApp/pokemon";
+		return delete(id);
 	}
 	
 	@GetMapping("/PokemonApp/pokemon/update/{id}")
-	public String updateType(@PathVariable Long id, PokemonDto pokemonDto, Model model) {
-		Pokemon pokemon = pokemonRepository.findById(id).get();
-		pokemonDto.fromPokemon(pokemon);
-		addPokemonToModel(model);
-		model.addAttribute("collapseForm",true);
-		return "pokemon";
+	public String updateType(PokemonDto pokemonDto, @PathVariable Long id, Model model) {
+		return put(pokemonDto,id,model);
 	}
-	
-	public void addPokemonToModel(Model model) {
-		List<Pokemon> pokemon = new ArrayList<>();
-		pokemon.addAll(pokemonRepository.findAll());
-		model.addAttribute("pokemon",pokemon);
+
+	@Override
+	protected void setClassVariables() {
+		TAG = "pokemon";
+		repository = pokemonRepository;
 	}
 	
 }

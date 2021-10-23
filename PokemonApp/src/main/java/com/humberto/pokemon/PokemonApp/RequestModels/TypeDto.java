@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 import com.humberto.pokemon.PokemonApp.Models.Type;
 
-public class TypeDto {
+public class TypeDto extends Dto{
 	
 	private Long fId;
 	@NotBlank
@@ -30,16 +30,18 @@ public class TypeDto {
 	public void setfName(String fName) {
 		this.fName = fName;
 	}
-	
-	public Type toType() {
-		System.out.println(fName);
+
+	@Override
+	public Object toEntity() {
 		if (fId == null) {
 			return new Type(fName); 
 		}
 		return new Type(fId, fName);
 	}
-	
-	public void fromType(Type type) {
+
+	@Override
+	public void fromEntity(Object entity) {
+		Type type = (Type) entity;
 		this.fId = type.getId();
 		this.fName = type.getName();
 	}

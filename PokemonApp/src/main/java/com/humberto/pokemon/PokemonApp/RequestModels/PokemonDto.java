@@ -7,7 +7,7 @@ import javax.validation.constraints.PositiveOrZero;
 import com.humberto.pokemon.PokemonApp.Enums.Gender;
 import com.humberto.pokemon.PokemonApp.Models.Pokemon;
 
-public class PokemonDto {
+public class PokemonDto extends Dto{
 
 	private Long fId;
 	@NotBlank
@@ -178,15 +178,18 @@ public class PokemonDto {
 		}
 		return null;
 	}
-	
-	public Pokemon toPokemon() {
+
+	@Override
+	public Object toEntity() {
 		if (fId == null) {
 			return new Pokemon(fName,fDescription,fHeight,fWeight,toGender(fGender),fCategory,fAttack,fDefense,fSpAttack,fSpDefense,fSpeed,fHp);
 		}
 		return new Pokemon(fId,fName,fDescription,fHeight,fWeight,toGender(fGender),fCategory,fAttack,fDefense,fSpAttack,fSpDefense,fSpeed,fHp);
 	}
-	
-	public void fromPokemon(Pokemon pokemon) {
+
+	@Override
+	public void fromEntity(Object entity) {
+		Pokemon pokemon = (Pokemon) entity;
 		this.fId = pokemon.getId();
 		this.fName = pokemon.getName();
 		this.fDescription = pokemon.getDescription();

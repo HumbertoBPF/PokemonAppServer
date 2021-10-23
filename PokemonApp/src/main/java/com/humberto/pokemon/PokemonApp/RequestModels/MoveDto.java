@@ -8,7 +8,7 @@ import javax.validation.constraints.PositiveOrZero;
 import com.humberto.pokemon.PokemonApp.Enums.CategoryMove;
 import com.humberto.pokemon.PokemonApp.Models.Move;
 
-public class MoveDto {
+public class MoveDto extends Dto{
 
 	private Long fId;
 	@NotBlank
@@ -82,15 +82,18 @@ public class MoveDto {
 			return null;
 		}
 	}
-	
-	public Move toMove() {
+
+	@Override
+	public Object toEntity() {
 		if (fId == null) {
 			return new Move(fName,toCategoryMove(fCategory),fPower,fAccuracy);
 		}
 		return new Move(fId,fName,toCategoryMove(fCategory),fPower,fAccuracy);
 	}
-	
-	public void fromMove(Move move) {
+
+	@Override
+	public void fromEntity(Object entity) {
+		Move move = (Move) entity;
 		this.fId = move.getId();
 		this.fName = move.getName();
 		this.fCategory = move.getCategory().toString();
