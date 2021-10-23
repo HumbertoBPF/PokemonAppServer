@@ -10,6 +10,16 @@
 	</form>
 </div>
 
+<div th:fragment="formRelatedType">
+	<form class="collapse" id="collapseExample" th:action="@{/PokemonApp/types/{id}/{column}(id=${idType}, column=${column})}" method="POST">
+		<div class="form-floating mb-3">
+		  <input type="text" class="form-control" id="fName" name="fName" placeholder="Name">
+		  <label for="fName">Name</label>
+		</div>
+		<button type="submit" class="btn btn-primary mb-3">Submit</button>
+	</form>
+</div>
+
 <div th:fragment="formMove">
 	<form class="collapse" th:classappend="${collapseForm}!=null?'show'" th:object="${moveDto}" id="collapseExample" action="/PokemonApp/moves" method="POST">
 		<div class="form-floating mb-3">
