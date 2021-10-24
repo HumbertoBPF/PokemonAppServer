@@ -40,17 +40,17 @@ public class TypeController extends ResourceController{
 	@GetMapping("/PokemonApp/types/{id}/effectiveType")
 	public String getEffectiveTypes(@PathVariable Long id, Model model) {
 		setClassVariables();
-		return getRelatedTypes(id, model, typeRepository.getById(id).getEffective(),"effectiveType");
+		return getRelatedTypes(typeRepository.getById(id), model, typeRepository.getById(id).getEffective(),"effectiveType");
 	}
 	
 	@GetMapping("/PokemonApp/types/{id}/notEffectiveType")
 	public String getNotEffectiveTypes(@PathVariable Long id, Model model) {
-		return getRelatedTypes(id, model, typeRepository.getById(id).getNotEffective(),"notEffectiveType");
+		return getRelatedTypes(typeRepository.getById(id), model, typeRepository.getById(id).getNotEffective(),"notEffectiveType");
 	}
 	
 	@GetMapping("/PokemonApp/types/{id}/noEffectType")
 	public String getNoEffectTypes(@PathVariable Long id, Model model) {
-		return getRelatedTypes(id, model, typeRepository.getById(id).getNoEffect(),"noEffectType");
+		return getRelatedTypes(typeRepository.getById(id), model, typeRepository.getById(id).getNoEffect(),"noEffectType");
 	}
 	
 	@PostMapping("/PokemonApp/types/{id}/effectiveType")

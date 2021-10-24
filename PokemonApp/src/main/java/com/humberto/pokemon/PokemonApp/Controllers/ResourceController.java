@@ -67,20 +67,20 @@ public abstract class ResourceController {
 		model.addAttribute("entityBase",TAG);
 	}
 	
-	protected String getRelatedTypes(Long id, Model model, List<Type> relatedTypes, String column) {
+	protected String getRelatedTypes(Object owner, Model model, List<Type> relatedTypes, String column) {
 		setClassVariables();
 		model.addAttribute("entityBase",TAG);
 		model.addAttribute("column",column);
-		model.addAttribute("idType",id);
+		model.addAttribute("owner",owner);
 		model.addAttribute("relatedTypes",relatedTypes);
 		return "relatedTypes";
 	}
 	
-	protected String getRelatedMoves(Long id, Model model, List<Move> relatedMoves, String column) {
+	protected String getRelatedMoves(Object owner, Model model, List<Move> relatedMoves, String column) {
 		setClassVariables();
 		model.addAttribute("entityBase",TAG);
 		model.addAttribute("column",column);
-		model.addAttribute("idType",id);
+		model.addAttribute("owner",owner);
 		model.addAttribute("relatedMoves",relatedMoves);
 		return "relatedMoves";
 	}

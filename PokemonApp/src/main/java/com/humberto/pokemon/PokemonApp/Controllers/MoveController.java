@@ -46,7 +46,7 @@ public class MoveController extends ResourceController{
 
 	@GetMapping("/PokemonApp/moves/{id}/types")
 	public String getTypes(@PathVariable Long id, Model model) {
-		return getRelatedTypes(id, model, moveRepository.getById(id).getType(),"types");
+		return getRelatedTypes(moveRepository.getById(id), model, moveRepository.getById(id).getType(),"types");
 	}
 	
 	@PostMapping("/PokemonApp/moves/{id}/types")

@@ -48,7 +48,7 @@ public class PokemonController extends ResourceController{
 	
 	@GetMapping("/PokemonApp/pokemon/{id}/types")
 	public String getTypes(@PathVariable Long id, Model model) {
-		return getRelatedTypes(id, model, pokemonRepository.getById(id).getType(),"types");
+		return getRelatedTypes(pokemonRepository.getById(id), model, pokemonRepository.getById(id).getType(),"types");
 	}
 	
 	@PostMapping("/PokemonApp/pokemon/{id}/types")
@@ -84,7 +84,7 @@ public class PokemonController extends ResourceController{
 	
 	@GetMapping("/PokemonApp/pokemon/{id}/moves")
 	public String getMoves(@PathVariable Long id, Model model) {
-		return getRelatedMoves(id, model, pokemonRepository.getById(id).getMoves(),"moves");
+		return getRelatedMoves(pokemonRepository.getById(id), model, pokemonRepository.getById(id).getMoves(),"moves");
 	}
 	
 	@PostMapping("/PokemonApp/pokemon/{id}/moves")
