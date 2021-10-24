@@ -6,4 +6,6 @@ import com.humberto.pokemon.PokemonApp.Models.Move;
 
 public interface MoveRepository extends JpaRepository<Move, Long>{
 
+	Move getByName(String name);
+	
 }

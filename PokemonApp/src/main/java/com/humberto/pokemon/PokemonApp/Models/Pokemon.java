@@ -1,6 +1,7 @@
 package com.humberto.pokemon.PokemonApp.Models;
 
 import static com.humberto.pokemon.PokemonApp.Util.Tools.listOfTypesAsString;
+import static com.humberto.pokemon.PokemonApp.Util.Tools.listOfMovesAsString;
 
 import java.util.List;
 
@@ -76,7 +77,6 @@ public class Pokemon {
 	public Pokemon(String name, String description, Double height, Double weight, Gender gender, List<Type> type,
 			String category, Integer attack, Integer defense, Integer spAttack, Integer spDefense, Integer speed,
 			Integer hp, List<Move> moves) {
-		super();
 		this.name = name;
 		this.description = description;
 		this.height = height;
@@ -93,6 +93,26 @@ public class Pokemon {
 		this.moves = moves;
 	}
 
+	public Pokemon(Long id, String name, String description, Double height, Double weight, Gender gender, List<Type> type,
+			String category, Integer attack, Integer defense, Integer spAttack, Integer spDefense, Integer speed,
+			Integer hp, List<Move> moves) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.height = height;
+		this.weight = weight;
+		this.gender = gender;
+		this.type = type;
+		this.category = category;
+		this.attack = attack;
+		this.defense = defense;
+		this.spAttack = spAttack;
+		this.spDefense = spDefense;
+		this.speed = speed;
+		this.hp = hp;
+		this.moves = moves;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -231,6 +251,10 @@ public class Pokemon {
 	
 	public String toStringTypes() {
 		return listOfTypesAsString(this.getType());
+	}
+	
+	public String toStringMoves() {
+		return listOfMovesAsString(this.getMoves());
 	}
 	
 }

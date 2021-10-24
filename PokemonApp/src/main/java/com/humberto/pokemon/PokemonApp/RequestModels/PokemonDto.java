@@ -1,11 +1,15 @@
 package com.humberto.pokemon.PokemonApp.RequestModels;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.humberto.pokemon.PokemonApp.Enums.Gender;
 import com.humberto.pokemon.PokemonApp.Models.Pokemon;
+import com.humberto.pokemon.PokemonApp.Repositories.PokemonRepository;
 
 public class PokemonDto extends Dto{
 
@@ -15,10 +19,10 @@ public class PokemonDto extends Dto{
 	@NotBlank
 	private String fDescription;
 	@NotNull
-	@PositiveOrZero
+	@Min(0)
 	private Double fHeight;
 	@NotNull
-	@PositiveOrZero
+	@Min(0)
 	private Double fWeight;
 	@NotBlank
 	private String fGender;
@@ -180,11 +184,14 @@ public class PokemonDto extends Dto{
 	}
 
 	@Override
-	public Object toEntity() {
+	public Object toEntity(JpaRepository repository) {
 		if (fId == null) {
 			return new Pokemon(fName,fDescription,fHeight,fWeight,toGender(fGender),fCategory,fAttack,fDefense,fSpAttack,fSpDefense,fSpeed,fHp);
 		}
-		return new Pokemon(fId,fName,fDescription,fHeight,fWeight,toGender(fGender),fCategory,fAttack,fDefense,fSpAttack,fSpDefense,fSpeed,fHp);
+		PokemonRepository pokemonRepository = (PokemonRepository) repository;
+		Pokemon pokemon = pokemonRepository.getById(fId);
+		return new Pokemon(fId,fName,fDescription,fHeight,fWeight,toGender(fGender),pokemon.getType(),
+				fCategory,fAttack,fDefense,fSpAttack,fSpDefense,fSpeed,fHp,pokemon.getMoves());
 	}
 
 	@Override

@@ -81,13 +81,13 @@
 		</div>
 		
 		<div class="form-floating mb-3">
-		  <input th:field="*{fHeight}" th:errorclass="is-invalid" type="number" class="form-control" id="fHeight" name="fHeight" placeholder="Input the pokemon height">
+		  <input th:field="*{fHeight}" th:errorclass="is-invalid" type="number" step="any" class="form-control" id="fHeight" name="fHeight" placeholder="Input the pokemon height">
 		  <label for="fHeight">Height</label>
 		  <div class="invalid-feedback" th:errors="*{fHeight}"></div>
 		</div>
 		
 		<div class="form-floating mb-3">
-		  <input th:field="*{fWeight}" th:errorclass="is-invalid" type="number" class="form-control" id="fWeight" name="fWeight" placeholder="Input the pokemon weight">
+		  <input th:field="*{fWeight}" th:errorclass="is-invalid" type="number" step="any" class="form-control" id="fWeight" name="fWeight" placeholder="Input the pokemon weight">
 		  <label for="fWeight">Weight</label>
 		  <div class="invalid-feedback" th:errors="*{fWeight}"></div>
 		</div>

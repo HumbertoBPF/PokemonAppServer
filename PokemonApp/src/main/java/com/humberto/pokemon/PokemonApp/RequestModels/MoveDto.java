@@ -5,8 +5,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.humberto.pokemon.PokemonApp.Enums.CategoryMove;
 import com.humberto.pokemon.PokemonApp.Models.Move;
+import com.humberto.pokemon.PokemonApp.Repositories.MoveRepository;
 
 public class MoveDto extends Dto{
 
@@ -84,11 +87,13 @@ public class MoveDto extends Dto{
 	}
 
 	@Override
-	public Object toEntity() {
+	public Object toEntity(JpaRepository repository) {
 		if (fId == null) {
 			return new Move(fName,toCategoryMove(fCategory),fPower,fAccuracy);
 		}
-		return new Move(fId,fName,toCategoryMove(fCategory),fPower,fAccuracy);
+		MoveRepository moveRepository = (MoveRepository) repository;
+		Move move = moveRepository.getById(fId);
+		return new Move(fId,fName,move.getType(),toCategoryMove(fCategory),fPower,fAccuracy);
 	}
 
 	@Override

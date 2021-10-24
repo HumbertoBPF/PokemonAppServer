@@ -2,7 +2,10 @@ package com.humberto.pokemon.PokemonApp.RequestModels;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.humberto.pokemon.PokemonApp.Models.Type;
+import com.humberto.pokemon.PokemonApp.Repositories.TypeRepository;
 
 public class TypeDto extends Dto{
 	
@@ -32,11 +35,13 @@ public class TypeDto extends Dto{
 	}
 
 	@Override
-	public Object toEntity() {
+	public Object toEntity(JpaRepository repository) {
 		if (fId == null) {
 			return new Type(fName); 
 		}
-		return new Type(fId, fName);
+		TypeRepository typeRepository = (TypeRepository) repository;
+		Type type = typeRepository.getById(fId);
+		return new Type(fId, fName, type.getEffective(), type.getNotEffective(), type.getNoEffect());
 	}
 
 	@Override

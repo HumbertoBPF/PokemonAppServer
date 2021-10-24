@@ -10,9 +10,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
+import com.humberto.pokemon.PokemonApp.Models.Move;
 import com.humberto.pokemon.PokemonApp.Models.Type;
+import com.humberto.pokemon.PokemonApp.Repositories.MoveRepository;
 import com.humberto.pokemon.PokemonApp.Repositories.TypeRepository;
 import com.humberto.pokemon.PokemonApp.RequestModels.Dto;
+import com.humberto.pokemon.PokemonApp.RequestModels.MoveDto;
 import com.humberto.pokemon.PokemonApp.RequestModels.TypeDto;
 
 public abstract class ResourceController {
@@ -21,6 +24,8 @@ public abstract class ResourceController {
 	protected JpaRepository repository;
 	@Autowired
 	protected TypeRepository typeRepository;
+	@Autowired
+	protected MoveRepository moveRepository;
 	
 	protected abstract void setClassVariables();
 	
@@ -37,7 +42,7 @@ public abstract class ResourceController {
 			addEntityToModel(model);
 			return TAG;
 		}
-		repository.save(dto.toEntity());
+		repository.save(dto.toEntity(repository));
 		return "redirect:/PokemonApp/"+TAG;
 	}
 	
@@ -59,6 +64,7 @@ public abstract class ResourceController {
 		List<Object> entities = new ArrayList<>();
 		entities.addAll(repository.findAll());
 		model.addAttribute(TAG,entities);
+		model.addAttribute("entityBase",TAG);
 	}
 	
 	protected String getRelatedTypes(Long id, Model model, List<Type> relatedTypes, String column) {
@@ -70,12 +76,31 @@ public abstract class ResourceController {
 		return "relatedTypes";
 	}
 	
+	protected String getRelatedMoves(Long id, Model model, List<Move> relatedMoves, String column) {
+		setClassVariables();
+		model.addAttribute("entityBase",TAG);
+		model.addAttribute("column",column);
+		model.addAttribute("idType",id);
+		model.addAttribute("relatedMoves",relatedMoves);
+		return "relatedMoves";
+	}
+	
 	protected String addInListOfTypes(Long id, TypeDto typeDto, ModifyListInterface modifyListInterface, String path) {
 		setClassVariables();
 		Type typeToAdd = typeRepository.getByName(typeDto.getfName());
 		Object entity = repository.getById(id);
 		if (typeToAdd != null && entity != null) {
 			modifyListInterface.modify(entity, typeToAdd);
+		}
+		return "redirect:/PokemonApp/"+TAG+"/{id}/"+path;
+	}
+
+	protected String addInListOfMoves(Long id, MoveDto moveDto, ModifyListInterface modifyListInterface, String path) {
+		setClassVariables();
+		Move moveToAdd = moveRepository.getByName(moveDto.getfName());
+		Object entity = repository.getById(id);
+		if (moveToAdd != null && entity != null) {
+			modifyListInterface.modify(entity, moveToAdd);
 		}
 		return "redirect:/PokemonApp/"+TAG+"/{id}/"+path;
 	}
@@ -91,8 +116,19 @@ public abstract class ResourceController {
 		return "redirect:/PokemonApp/"+TAG+"/{id}/"+path;
 	}
 	
+	protected String deleteFromListOfMoves(Long id, Long idToDelete, ModifyListInterface modifyListInterface,String path) {
+		setClassVariables();
+		Move moveToDelete = moveRepository.getById(idToDelete);
+		Object entity = repository.getById(id);
+		if (moveToDelete != null && entity != null) {
+			modifyListInterface.modify(entity, moveToDelete);
+			repository.save(entity);
+		}
+		return "redirect:/PokemonApp/"+TAG+"/{id}/"+path;
+	}
+	
 	protected interface ModifyListInterface {
-		void modify(Object entity, Type typeRelated);
+		void modify(Object entity, Object entityRelated);
 	}
 	
 }

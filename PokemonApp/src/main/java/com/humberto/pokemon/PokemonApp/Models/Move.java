@@ -38,6 +38,15 @@ public class Move {
 		this.accuracy = accuracy;
 	}
 	
+	public Move(Long id, String name, List<Type> type, CategoryMove category, Long power, Integer accuracy) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.category = category;
+		this.power = power;
+		this.accuracy = accuracy;
+	}
+
 	public Move(String name, CategoryMove category, Long power, Integer accuracy) {
 		this.name = name;
 		this.category = category;

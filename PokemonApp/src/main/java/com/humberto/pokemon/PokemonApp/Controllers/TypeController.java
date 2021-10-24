@@ -57,8 +57,9 @@ public class TypeController extends ResourceController{
 	public String addEffectiveTypes(@Valid TypeDto typeDto, BindingResult result, @PathVariable Long id, Model model) {
 		return addInListOfTypes(id, typeDto, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeRelated) {
+			public void modify(Object entity, Object entityRelated) {
 				Type type = (Type) entity;
+				Type typeRelated = (Type) entityRelated;
 				List<Type> relatedTypes = type.getEffective();
 				if (!relatedTypes.contains(typeRelated)) {
 					relatedTypes.add(typeRelated);
@@ -73,8 +74,9 @@ public class TypeController extends ResourceController{
 	public String addNotEffectiveTypes(@Valid TypeDto typeDto, BindingResult result, @PathVariable Long id, Model model) {
 		return addInListOfTypes(id, typeDto, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeRelated) {
+			public void modify(Object entity, Object entityRelated) {
 				Type type = (Type) entity;
+				Type typeRelated = (Type) entityRelated;
 				List<Type> relatedTypes = type.getNotEffective();
 				if (!relatedTypes.contains(typeRelated)) {
 					relatedTypes.add(typeRelated);
@@ -89,8 +91,9 @@ public class TypeController extends ResourceController{
 	public String addNoEffectTypes(@Valid TypeDto typeDto, BindingResult result, @PathVariable Long id, Model model) {
 		return addInListOfTypes(id, typeDto, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeRelated) {
+			public void modify(Object entity, Object entityRelated) {
 				Type type = (Type) entity;
+				Type typeRelated = (Type) entityRelated;
 				List<Type> relatedTypes = type.getNoEffect();
 				if (!relatedTypes.contains(typeRelated)) {
 					relatedTypes.add(typeRelated);
@@ -105,8 +108,9 @@ public class TypeController extends ResourceController{
 	public String deleteEffectiveTypes(@PathVariable Long id, @PathVariable Long idRelated, Model model) {
 		return deleteFromListOfTypes(id, idRelated, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeToDelete) {
+			public void modify(Object entity, Object entityRelated) {
 				Type type = (Type) entity;
+				Type typeToDelete = (Type) entityRelated;
 				List<Type> relatedTypes = type.getEffective();
 				relatedTypes.remove(typeToDelete);
 				type.setEffective(relatedTypes);
@@ -118,8 +122,9 @@ public class TypeController extends ResourceController{
 	public String deleteNotEffectiveTypes(@PathVariable Long id, @PathVariable Long idRelated, Model model) {
 		return deleteFromListOfTypes(id, idRelated, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeToDelete) {
+			public void modify(Object entity, Object entityRelated) {
 				Type type = (Type) entity;
+				Type typeToDelete = (Type) entityRelated;
 				List<Type> relatedTypes = type.getNotEffective();
 				relatedTypes.remove(typeToDelete);
 				type.setNotEffective(relatedTypes);
@@ -131,8 +136,9 @@ public class TypeController extends ResourceController{
 	public String deleteNoEffectTypes(@PathVariable Long id, @PathVariable Long idRelated, Model model) {
 		return deleteFromListOfTypes(id, idRelated, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeToDelete) {
+			public void modify(Object entity, Object entityRelated) {
 				Type type = (Type) entity;
+				Type typeToDelete = (Type) entityRelated;
 				List<Type> relatedTypes = type.getNoEffect();
 				relatedTypes.remove(typeToDelete);
 				type.setNoEffect(relatedTypes);

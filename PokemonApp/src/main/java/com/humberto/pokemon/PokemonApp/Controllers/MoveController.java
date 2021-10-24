@@ -53,8 +53,9 @@ public class MoveController extends ResourceController{
 	public String addTypes(@Valid TypeDto typeDto, BindingResult result, @PathVariable Long id, Model model) {
 		return addInListOfTypes(id, typeDto, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeRelated) {
+			public void modify(Object entity, Object entityRelated) {
 				Move move = (Move) entity;
+				Type typeRelated = (Type) entityRelated;
 				List<Type> relatedTypes = move.getType();
 				if (!relatedTypes.contains(typeRelated)) {
 					relatedTypes.add(typeRelated);
@@ -69,8 +70,9 @@ public class MoveController extends ResourceController{
 	public String deleteTypes(@PathVariable Long id, @PathVariable Long idRelated, Model model) {
 		return deleteFromListOfTypes(id, idRelated, new ModifyListInterface() {
 			@Override
-			public void modify(Object entity, Type typeToDelete) {
+			public void modify(Object entity, Object entityRelated) {
 				Move move = (Move) entity;
+				Type typeToDelete = (Type) entityRelated;
 				List<Type> relatedTypes = move.getType();
 				relatedTypes.remove(typeToDelete);
 				move.setType(relatedTypes);

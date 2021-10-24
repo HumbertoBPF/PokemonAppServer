@@ -33,6 +33,14 @@ public class Type {
 		this.notEffective = notEffective;
 		this.noEffect = noEffect;
 	}
+	
+	public Type(Long id, String name, List<Type> effective, List<Type> notEffective, List<Type> noEffect) {
+		this.id = id;
+		this.name = name;
+		this.effective = effective;
+		this.notEffective = notEffective;
+		this.noEffect = noEffect;
+	}
 
 	public Type(String name) {
 		this.name = name;

@@ -16,10 +16,10 @@
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		      <div class="navbar-nav">
-		        <a class="nav-link active" aria-current="page" href="#">Home</a>
-		        <a class="nav-link" href="/PokemonApp/pokemon">Pokémon</a>
-		        <a class="nav-link" href="/PokemonApp/types">Types</a>
-		        <a class="nav-link" href="/PokemonApp/moves">Moves</a>
+		        <a class="nav-link" aria-current="page" href="#">Home</a>
+		        <a class="nav-link" th:classappend="${entityBase eq 'pokemon'} ? 'active'" href="/PokemonApp/pokemon">Pokémon</a>
+		        <a class="nav-link" th:classappend="${entityBase eq 'types'} ? 'active'" href="/PokemonApp/types">Types</a>
+		        <a class="nav-link" th:classappend="${entityBase eq 'moves'} ? 'active'" href="/PokemonApp/moves">Moves</a>
 		      </div>
 		    </div>
 		  </div>
