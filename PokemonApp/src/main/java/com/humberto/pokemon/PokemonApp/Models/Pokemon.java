@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 import com.humberto.pokemon.PokemonApp.Enums.Gender;
 
@@ -21,7 +20,7 @@ public class Pokemon {
 	private Double height;
 	private Double weight;
 	private Gender gender;
-	@OneToMany
+	@ManyToMany
 	private List<Type> type;
 	private String category;
 	private Integer attack;

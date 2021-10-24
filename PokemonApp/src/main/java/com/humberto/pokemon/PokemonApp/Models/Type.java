@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Type {
@@ -15,11 +15,11 @@ public class Type {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@OneToMany
+	@ManyToMany
 	private List<Type> effective = new ArrayList<>();
-	@OneToMany
+	@ManyToMany
 	private List<Type> notEffective = new ArrayList<>();
-	@OneToMany
+	@ManyToMany
 	private List<Type> noEffect = new ArrayList<>();
 	
 	public Type() {
@@ -79,6 +79,30 @@ public class Type {
 
 	public void setNoEffect(List<Type> noEffect) {
 		this.noEffect = noEffect;
+	}
+	
+	public String toStringEffectiveTypes() {
+		String stringEffectiveTypes = "";
+		for (Type type : this.getEffective()) {
+			stringEffectiveTypes += type.getName() + ",";
+		}
+		return stringEffectiveTypes;
+	}
+	
+	public String toStringNotEffectiveTypes() {
+		String stringNotEffectiveTypes = "";
+		for (Type type : this.getNotEffective()) {
+			stringNotEffectiveTypes += type.getName() + ",";
+		}
+		return stringNotEffectiveTypes;
+	}
+	
+	public String toStringNoEffectTypes() {
+		String stringNoEffectTypes = "";
+		for (Type type : this.getNoEffect()) {
+			stringNoEffectTypes += type.getName() + ",";
+		}
+		return stringNoEffectTypes;
 	}
 	
 }
