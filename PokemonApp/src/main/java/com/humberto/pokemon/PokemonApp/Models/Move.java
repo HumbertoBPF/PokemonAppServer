@@ -1,12 +1,16 @@
 package com.humberto.pokemon.PokemonApp.Models;
 
+import static com.humberto.pokemon.PokemonApp.Util.Tools.listOfTypesAsString;
+
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 import com.humberto.pokemon.PokemonApp.Enums.CategoryMove;
 
@@ -16,8 +20,8 @@ public class Move {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@ManyToOne
-	private Type type;
+	@ManyToMany
+	private List<Type> type;
 	@Enumerated(EnumType.STRING)
 	private CategoryMove category;
 	private Long power;
@@ -57,11 +61,11 @@ public class Move {
 		this.name = name;
 	}
 
-	public Type getType() {
+	public List<Type> getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(List<Type> type) {
 		this.type = type;
 	}
 
@@ -87,6 +91,10 @@ public class Move {
 
 	public void setAccuracy(Integer accuracy) {
 		this.accuracy = accuracy;
+	}
+	
+	public String toStringTypes() {
+		return listOfTypesAsString(this.getType());
 	}
 	
 }

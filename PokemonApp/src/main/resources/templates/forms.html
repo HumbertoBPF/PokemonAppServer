@@ -11,7 +11,7 @@
 </div>
 
 <div th:fragment="formRelatedType">
-	<form class="collapse" id="collapseExample" th:action="@{/PokemonApp/types/{id}/{column}(id=${idType}, column=${column})}" method="POST">
+	<form class="collapse" id="collapseExample" th:action="@{/PokemonApp/{entityBase}/{id}/{column}(entityBase=${entityBase}, id=${idType}, column=${column})}" method="POST">
 		<div class="form-floating mb-3">
 		  <input type="text" class="form-control" id="fName" name="fName" placeholder="Name">
 		  <label for="fName">Name</label>

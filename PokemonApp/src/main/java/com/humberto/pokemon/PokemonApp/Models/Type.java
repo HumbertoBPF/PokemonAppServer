@@ -1,5 +1,7 @@
 package com.humberto.pokemon.PokemonApp.Models;
 
+import static com.humberto.pokemon.PokemonApp.Util.Tools.listOfTypesAsString;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,27 +84,15 @@ public class Type {
 	}
 	
 	public String toStringEffectiveTypes() {
-		String stringEffectiveTypes = "";
-		for (Type type : this.getEffective()) {
-			stringEffectiveTypes += type.getName() + ",";
-		}
-		return stringEffectiveTypes;
+		return listOfTypesAsString(this.getEffective());
 	}
 	
 	public String toStringNotEffectiveTypes() {
-		String stringNotEffectiveTypes = "";
-		for (Type type : this.getNotEffective()) {
-			stringNotEffectiveTypes += type.getName() + ",";
-		}
-		return stringNotEffectiveTypes;
+		return listOfTypesAsString(this.getNotEffective());
 	}
 	
 	public String toStringNoEffectTypes() {
-		String stringNoEffectTypes = "";
-		for (Type type : this.getNoEffect()) {
-			stringNoEffectTypes += type.getName() + ",";
-		}
-		return stringNoEffectTypes;
+		return listOfTypesAsString(this.getNoEffect());
 	}
 	
 }

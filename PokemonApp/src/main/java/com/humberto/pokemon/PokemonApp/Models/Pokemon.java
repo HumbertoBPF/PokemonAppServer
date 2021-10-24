@@ -1,5 +1,7 @@
 package com.humberto.pokemon.PokemonApp.Models;
 
+import static com.humberto.pokemon.PokemonApp.Util.Tools.listOfTypesAsString;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -225,6 +227,10 @@ public class Pokemon {
 
 	public void setEvasion(Integer evasion) {
 		this.evasion = evasion;
+	}
+	
+	public String toStringTypes() {
+		return listOfTypesAsString(this.getType());
 	}
 	
 }
