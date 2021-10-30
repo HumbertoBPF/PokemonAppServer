@@ -61,6 +61,66 @@
 		  <div class="invalid-feedback" th:errors="*{fAccuracy}"></div>
 		</div>
 		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fMinTimesPerTour}" th:errorclass="is-invalid" type="number" class="form-control" id="fMinTimesPerTour" name="fMinTimesPerTour" min="0" max="100" placeholder="Minimum of hits per turn">
+		  <label for="fMinTimesPerTour">Minimum of hits per turn</label>
+		  <div class="invalid-feedback" th:errors="*{fMinTimesPerTour}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fMaxTimesPerTour}" th:errorclass="is-invalid" type="number" class="form-control" id="fMaxTimesPerTour" name="fMaxTimesPerTour" min="0" max="100" placeholder="Maximum of hits per turn">
+		  <label for="fMaxTimesPerTour">Maximum of hits per turn</label>
+		  <div class="invalid-feedback" th:errors="*{fMaxTimesPerTour}"></div>
+		</div>
+		
+		<div class="mb-3">
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="true" name="fUserFaints" id="fUserFaintsTrue" checked>
+			  <label class="form-check-label" for="fUserFaints">
+			    User faints after attacking
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="false" name="fUserFaints" id="fUserFaintsFalse">
+			  <label class="form-check-label" for="fUserFaints">
+			    User does not faint after attacking
+			  </label>
+			</div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fRoundsToLoad}" th:errorclass="is-invalid" type="number" class="form-control" id="fRoundsToLoad" name="fRoundsToLoad" min="0" max="100" placeholder="Number of rounds to load">
+		  <label for="fRoundsToLoad">Number of rounds to load</label>
+		  <div class="invalid-feedback" th:errors="*{fRoundsToLoad}"></div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fPp}" th:errorclass="is-invalid" type="number" class="form-control" id="fPp" name="fPp" min="0" max="100" placeholder="PPs">
+		  <label for="fPp">PPs</label>
+		  <div class="invalid-feedback" th:errors="*{fPp}"></div>
+		</div>
+		
+		<div class="mb-3">
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="true" name="fTrapping" id="fTrappingTrue" checked>
+			  <label class="form-check-label" for="fTrapping">
+			    Opponent is trapped
+			  </label>
+			</div>
+			<div class="form-check">
+			  <input class="form-check-input" type="radio" value="false" name="fTrapping" id="fTrappingTrue">
+			  <label class="form-check-label" for="fTrapping">
+			    Opponent is not trapped
+			  </label>
+			</div>
+		</div>
+		
+		<div class="form-floating mb-3">
+		  <input th:field="*{fFlinchingProbability}" th:errorclass="is-invalid" type="number" class="form-control" id="fFlinchingProbability" name="fFlinchingProbability" min="0" max="100" placeholder="Flinching probability">
+		  <label for="fFlinchingProbability">Flinching probability</label>
+		  <div class="invalid-feedback" th:errors="*{fFlinchingProbability}"></div>
+		</div>
+		
 		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
 		<button type="submit" class="btn btn-primary mb-3">Submit</button>
 	</form>

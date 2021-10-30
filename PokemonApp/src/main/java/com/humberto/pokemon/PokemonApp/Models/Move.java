@@ -26,6 +26,13 @@ public class Move {
 	private CategoryMove category;
 	private Long power;
 	private Integer accuracy;
+	private Integer minTimesPerTour;
+	private Integer maxTimesPerTour;
+	private Boolean userFaints;
+	private Integer roundsToLoad;
+	private Integer pp;
+	private Boolean trapping;
+	private Integer flinchingProbability;
 	
 	public Move() {
 	}
@@ -47,11 +54,45 @@ public class Move {
 		this.accuracy = accuracy;
 	}
 
+	public Move(Long id, String name, List<Type> type, CategoryMove category, Long power, Integer accuracy,
+			Integer minTimesPerTour, Integer maxTimesPerTour, Boolean userFaints, Integer roundsToLoad, Integer pp,
+			Boolean trapping, Integer flinchingProbability) {
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.category = category;
+		this.power = power;
+		this.accuracy = accuracy;
+		this.minTimesPerTour = minTimesPerTour;
+		this.maxTimesPerTour = maxTimesPerTour;
+		this.userFaints = userFaints;
+		this.roundsToLoad = roundsToLoad;
+		this.pp = pp;
+		this.trapping = trapping;
+		this.flinchingProbability = flinchingProbability;
+	}
+
 	public Move(String name, CategoryMove category, Long power, Integer accuracy) {
 		this.name = name;
 		this.category = category;
 		this.power = power;
 		this.accuracy = accuracy;
+	}
+	
+	public Move(String name, CategoryMove category, Long power, Integer accuracy,
+			Integer minTimesPerTour, Integer maxTimesPerTour, Boolean userFaints, Integer roundsToLoad, Integer pp,
+			Boolean trapping, Integer flinchingProbability) {
+		this.name = name;
+		this.category = category;
+		this.power = power;
+		this.accuracy = accuracy;
+		this.minTimesPerTour = minTimesPerTour;
+		this.maxTimesPerTour = maxTimesPerTour;
+		this.userFaints = userFaints;
+		this.roundsToLoad = roundsToLoad;
+		this.pp = pp;
+		this.trapping = trapping;
+		this.flinchingProbability = flinchingProbability;
 	}
 
 	public Long getId() {
@@ -102,6 +143,62 @@ public class Move {
 		this.accuracy = accuracy;
 	}
 	
+	public Integer getMinTimesPerTour() {
+		return minTimesPerTour;
+	}
+
+	public void setMinTimesPerTour(Integer minTimesPerTour) {
+		this.minTimesPerTour = minTimesPerTour;
+	}
+
+	public Integer getMaxTimesPerTour() {
+		return maxTimesPerTour;
+	}
+
+	public void setMaxTimesPerTour(Integer maxTimesPerTour) {
+		this.maxTimesPerTour = maxTimesPerTour;
+	}
+
+	public Boolean getUserFaints() {
+		return userFaints;
+	}
+
+	public void setUserFaints(Boolean userFaints) {
+		this.userFaints = userFaints;
+	}
+
+	public Integer getRoundsToLoad() {
+		return roundsToLoad;
+	}
+
+	public void setRoundsToLoad(Integer roundsToLoad) {
+		this.roundsToLoad = roundsToLoad;
+	}
+
+	public Integer getPp() {
+		return pp;
+	}
+
+	public void setPp(Integer pp) {
+		this.pp = pp;
+	}
+
+	public Boolean getTrapping() {
+		return trapping;
+	}
+
+	public void setTrapping(Boolean trapping) {
+		this.trapping = trapping;
+	}
+
+	public Integer getFlinchingProbability() {
+		return flinchingProbability;
+	}
+
+	public void setFlinchingProbability(Integer flinchingProbability) {
+		this.flinchingProbability = flinchingProbability;
+	}
+
 	public String toStringTypes() {
 		return listOfTypesAsString(this.getType());
 	}
