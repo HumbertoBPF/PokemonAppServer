@@ -30,19 +30,19 @@
 		
 		<div class="mb-3">
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Physical" name="fCategory" id="fPhysical" checked>
+			  <input class="form-check-input" type="radio" value="Physical" name="fCategory" id="fPhysical" th:checked="${moveDto.fCategory eq 'Physical'}">
 			  <label class="form-check-label" for="fCategory">
 			    Physical
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Special" name="fCategory" id="fSpecial">
+			  <input class="form-check-input" type="radio" value="Special" name="fCategory" id="fSpecial" th:checked="${moveDto.fCategory eq 'Special'}">
 			  <label class="form-check-label" for="fCategory">
 			    Special
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Status" name="fCategory" id="fStatus">
+			  <input class="form-check-input" type="radio" value="Status" name="fCategory" id="fStatus" th:checked="${moveDto.fCategory eq 'Status'}">
 			  <label class="form-check-label" for="fCategory">
 			    Status
 			  </label>
@@ -75,13 +75,13 @@
 		
 		<div class="mb-3">
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="true" name="fUserFaints" id="fUserFaintsTrue" checked>
+			  <input class="form-check-input" type="radio" value="true" name="fUserFaints" id="fUserFaintsTrue" th:checked="${moveDto.fUserFaints eq 'true'}">
 			  <label class="form-check-label" for="fUserFaints">
 			    User faints after attacking
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="false" name="fUserFaints" id="fUserFaintsFalse">
+			  <input class="form-check-input" type="radio" value="false" name="fUserFaints" id="fUserFaintsFalse" th:checked="${moveDto.fUserFaints eq 'false'}">
 			  <label class="form-check-label" for="fUserFaints">
 			    User does not faint after attacking
 			  </label>
@@ -102,13 +102,13 @@
 		
 		<div class="mb-3">
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="true" name="fTrapping" id="fTrappingTrue" checked>
+			  <input class="form-check-input" type="radio" value="true" name="fTrapping" id="fTrappingTrue" th:checked="${moveDto.fTrapping eq 'true'}">
 			  <label class="form-check-label" for="fTrapping">
 			    Opponent is trapped
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="false" name="fTrapping" id="fTrappingTrue">
+			  <input class="form-check-input" type="radio" value="false" name="fTrapping" id="fTrappingTrue" th:checked="${moveDto.fTrapping eq 'false'}">
 			  <label class="form-check-label" for="fTrapping">
 			    Opponent is not trapped
 			  </label>
@@ -154,25 +154,25 @@
 		
 		<div class="mb-3">
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Male" name="fGender" id="fMale" checked>
+			  <input class="form-check-input" type="radio" value="Male" name="fGender" id="fMale" th:checked="${pokemonDto.fGender eq 'Male'}">
 			  <label class="form-check-label" for="fGender">
 			    Male
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Female" name="fGender" id="fFemale">
+			  <input class="form-check-input" type="radio" value="Female" name="fGender" id="fFemale" th:checked="${pokemonDto.fGender eq 'Female'}">
 			  <label class="form-check-label" for="fGender">
 			    Female
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Both" name="fGender" id="fBoth">
+			  <input class="form-check-input" type="radio" value="Both" name="fGender" id="fBoth" th:checked="${pokemonDto.fGender eq 'Both'}">
 			  <label class="form-check-label" for="fGender">
 			    Both
 			  </label>
 			</div>
 			<div class="form-check">
-			  <input class="form-check-input" type="radio" value="Unknown" name="fGender" id="fUnknown">
+			  <input class="form-check-input" type="radio" value="Unknown" name="fGender" id="fUnknown" th:checked="${pokemonDto.fGender eq 'Unknown'}">
 			  <label class="form-check-label" for="fGender">
 			    None
 			  </label>

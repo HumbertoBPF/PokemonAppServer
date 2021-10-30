@@ -187,7 +187,7 @@ public class MoveDto extends Dto{
 		Move move = (Move) entity;
 		this.fId = move.getId();
 		this.fName = move.getName();
-		this.fCategory = move.getCategory().toString();
+		this.fCategory = move.getCategory().getValue();
 		this.fPower = move.getPower();
 		this.fAccuracy = move.getAccuracy();
 		this.fMinTimesPerTour = move.getMinTimesPerTour();
