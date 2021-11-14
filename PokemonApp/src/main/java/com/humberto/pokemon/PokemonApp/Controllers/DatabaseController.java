@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.humberto.pokemon.PokemonApp.Models.Move;
 import com.humberto.pokemon.PokemonApp.Models.MoveType;
 import com.humberto.pokemon.PokemonApp.Models.Pokemon;
+import com.humberto.pokemon.PokemonApp.Models.PokemonType;
 import com.humberto.pokemon.PokemonApp.Models.Type;
 import com.humberto.pokemon.PokemonApp.Models.Embeddable.MoveTypeId;
+import com.humberto.pokemon.PokemonApp.Models.Embeddable.PokemonTypeId;
 import com.humberto.pokemon.PokemonApp.Repositories.MoveRepository;
 import com.humberto.pokemon.PokemonApp.Repositories.MoveTypeRepository;
 import com.humberto.pokemon.PokemonApp.Repositories.PokemonRepository;
+import com.humberto.pokemon.PokemonApp.Repositories.PokemonTypeRepository;
 import com.humberto.pokemon.PokemonApp.Repositories.TypeRepository;
 import com.humberto.pokemon.PokemonApp.RequestModels.MoveDto;
 import com.humberto.pokemon.PokemonApp.RequestModels.PokemonDto;
@@ -31,6 +34,8 @@ public class DatabaseController {
 	private TypeRepository typeRepository;
 	@Autowired
 	private MoveTypeRepository moveTypeRepository;
+	@Autowired
+	private PokemonTypeRepository pokemonTypeRepository;
 	
 	@GetMapping("/PokemonApp/db/pokemon")
 	public List<PokemonDto> getPokemons(){
@@ -76,6 +81,16 @@ public class DatabaseController {
 			moveTypeIds.add(moveType.getId());
 		}
 		return moveTypeIds;
+	}
+	
+	@GetMapping("/PokemonApp/db/pokemonTypes")
+	public List<PokemonTypeId> getPokemonType(){
+		List<PokemonType> pokemonTypes = pokemonTypeRepository.findAll();
+		List<PokemonTypeId> pokemonTypesId = new ArrayList<>();
+		for (PokemonType pokemonType : pokemonTypes) {
+			pokemonTypesId.add(pokemonType.getId());
+		}
+		return pokemonTypesId;
 	}
 	
 }
