@@ -13,6 +13,9 @@ public class TypeDto extends Dto{
 	@NotBlank
 	private String fName;
 	
+	public TypeDto() {
+	}
+
 	public TypeDto(Long fId, String fName) {
 		this.fId = fId;
 		this.fName = fName;

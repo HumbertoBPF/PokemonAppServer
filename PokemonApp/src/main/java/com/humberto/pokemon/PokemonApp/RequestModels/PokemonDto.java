@@ -46,6 +46,11 @@ public class PokemonDto extends Dto{
 	@NotNull
 	@PositiveOrZero
 	private Integer fHp;
+	private Integer fAccuracy;
+	private Integer fEvasion;
+	
+	public PokemonDto() {
+	}
 
 	public PokemonDto(Long fId, String fName, String fDescription, Double fHeight, Double fWeight, String fGender,
 			String fCategory, Integer fAttack, Integer fDefense, Integer fSpAttack, Integer fSpDefense, Integer fSpeed,
@@ -170,6 +175,22 @@ public class PokemonDto extends Dto{
 		this.fHp = fHp;
 	}
 	
+	public Integer getfAccuracy() {
+		return fAccuracy;
+	}
+
+	public void setfAccuracy(Integer fAccuracy) {
+		this.fAccuracy = fAccuracy;
+	}
+
+	public Integer getfEvasion() {
+		return fEvasion;
+	}
+
+	public void setfEvasion(Integer fEvasion) {
+		this.fEvasion = fEvasion;
+	}
+
 	private Gender toGender(String genderString) {
 		if (genderString.equals(Gender.MALE.getValue())) {
 			return Gender.MALE;
@@ -210,6 +231,8 @@ public class PokemonDto extends Dto{
 		this.fSpDefense = pokemon.getSpDefense();
 		this.fSpeed = pokemon.getSpeed();
 		this.fHp = pokemon.getHp();
+		this.fAccuracy = pokemon.getAccuracy();
+		this.fEvasion = pokemon.getEvasion();
 	}
 	
 }

@@ -45,6 +45,9 @@ public class MoveDto extends Dto{
 	@Max(100)
 	private Integer fFlinchingProbability;
 	
+	public MoveDto() {
+	}
+
 	public MoveDto(Long fId, @NotBlank String fName, @NotBlank String fCategory, @NotNull @PositiveOrZero Long fPower,
 			@NotNull @PositiveOrZero @Max(100) Integer fAccuracy, Integer fMinTimesPerTour, Integer fMaxTimesPerTour,
 			String fUserFaints, Integer fRoundsToLoad, Integer fPp, String fTrapping, Integer fFlinchingProbability) {
@@ -174,12 +177,12 @@ public class MoveDto extends Dto{
 	public Object toEntity(JpaRepository repository) {
 		if (fId == null) {
 			return new Move(fName,toCategoryMove(fCategory),fPower,fAccuracy,fMinTimesPerTour,
-					fMaxTimesPerTour,fUserFaints.equals("True"),fRoundsToLoad,fPp,fTrapping.equals("True"),fFlinchingProbability);
+					fMaxTimesPerTour,fUserFaints.equals("true"),fRoundsToLoad,fPp,fTrapping.equals("true"),fFlinchingProbability);
 		}
 		MoveRepository moveRepository = (MoveRepository) repository;
 		Move move = moveRepository.getById(fId);
 		return new Move(fId,fName,move.getType(),toCategoryMove(fCategory),fPower,fAccuracy,fMinTimesPerTour,
-				fMaxTimesPerTour,fUserFaints.equals("True"),fRoundsToLoad,fPp,fTrapping.equals("True"),fFlinchingProbability);
+				fMaxTimesPerTour,fUserFaints.equals("true"),fRoundsToLoad,fPp,fTrapping.equals("true"),fFlinchingProbability);
 	}
 
 	@Override
@@ -195,11 +198,13 @@ public class MoveDto extends Dto{
 		if (move.getUserFaints() != null) {
 			this.fUserFaints = move.getUserFaints().toString();
 		}
+		System.out.println("fUserFaints : "+this.fUserFaints);
 		this.fRoundsToLoad = move.getRoundsToLoad();
 		this.fPp = move.getPp();
 		if (move.getTrapping() != null) {
 			this.fTrapping = move.getTrapping().toString();
 		}
+		System.out.println("fTrapping : "+this.fTrapping);
 		this.fFlinchingProbability = move.getFlinchingProbability();
 	}
 	
