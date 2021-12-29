@@ -3,6 +3,7 @@
 	  <thead>
 	    <tr>
 	      <th scope="col">Name</th>
+	      <th scope="col">Color code</th>
 	      <th scope="col">Effective against</th>
 	      <th scope="col">Not effective against</th>
 	      <th scope="col">No effect against</th>
@@ -14,6 +15,7 @@
 	  	<th:block th:each="type:${types}">
 	  		<tr>
 		      <th scope="row" th:text="${type.name}"></th>
+		      <td scope="row" th:text="${type.colorCode}"></td>
 		      <td><div th:text="${type.toStringEffectiveTypes}"></div> (<a th:href="@{/PokemonApp/types/{id}/effectiveType(id=${type.id})}">Edit</a>)</td>
 		      <td><div th:text="${type.toStringNotEffectiveTypes}"></div> (<a th:href="@{/PokemonApp/types/{id}/notEffectiveType(id=${type.id})}">Edit</a>)</td>
 		      <td><div th:text="${type.toStringNoEffectTypes}"></div> (<a th:href="@{/PokemonApp/types/{id}/noEffectType(id=${type.id})}">Edit</a>)</td>

@@ -12,6 +12,8 @@ public class TypeDto extends Dto{
 	private Long fId;
 	@NotBlank
 	private String fName;
+	@NotBlank
+	private String fColorCode;
 	
 	public TypeDto() {
 	}
@@ -36,15 +38,23 @@ public class TypeDto extends Dto{
 	public void setfName(String fName) {
 		this.fName = fName;
 	}
+	
+	public String getfColorCode() {
+		return fColorCode;
+	}
+
+	public void setfColorCode(String fColorCode) {
+		this.fColorCode = fColorCode;
+	}
 
 	@Override
 	public Object toEntity(JpaRepository repository) {
 		if (fId == null) {
-			return new Type(fName); 
+			return new Type(fName,fColorCode); 
 		}
 		TypeRepository typeRepository = (TypeRepository) repository;
 		Type type = typeRepository.getById(fId);
-		return new Type(fId, fName, type.getEffective(), type.getNotEffective(), type.getNoEffect());
+		return new Type(fId, fName, fColorCode, type.getEffective(), type.getNotEffective(), type.getNoEffect());
 	}
 
 	@Override
@@ -52,6 +62,7 @@ public class TypeDto extends Dto{
 		Type type = (Type) entity;
 		this.fId = type.getId();
 		this.fName = type.getName();
+		this.fColorCode = type.getColorCode();
 	}
 	
 }

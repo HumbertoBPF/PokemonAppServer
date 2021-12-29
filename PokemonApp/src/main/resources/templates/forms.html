@@ -5,6 +5,11 @@
 		  <label for="fName">Name</label>
 		  <div class="invalid-feedback" th:errors="*{fName}"></div>
 		</div>
+		<div class="form-floating mb-3">
+		  <input th:field="*{fColorCode}" th:errorclass="is-invalid" type="text" class="form-control" id="fColorCode" name="fColorCode" placeholder="Color code">
+		  <label for="fColorCode">Color code</label>
+		  <div class="invalid-feedback" th:errors="*{fColorCode}"></div>
+		</div>
 		<input th:field="*{fId}" type="number" class="form-control invisible" id="fId" name="fId">
 		<button type="submit" class="btn btn-primary mb-3">Submit</button>
 	</form>

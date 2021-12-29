@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -17,38 +18,45 @@ public class Type {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String colorCode;
 	@ManyToMany
 	private List<Type> effective = new ArrayList<>();
 	@ManyToMany
+	@JoinTable(name = "type_not_effective")
 	private List<Type> notEffective = new ArrayList<>();
 	@ManyToMany
+	@JoinTable(name = "type_no_effect")
 	private List<Type> noEffect = new ArrayList<>();
 	
 	public Type() {
 	}
 
-	public Type(String name, List<Type> effective, List<Type> notEffective, List<Type> noEffect) {
+	public Type(String name, String colorCode, List<Type> effective, List<Type> notEffective, List<Type> noEffect) {
 		this.name = name;
+		this.colorCode = colorCode;
 		this.effective = effective;
 		this.notEffective = notEffective;
 		this.noEffect = noEffect;
 	}
 	
-	public Type(Long id, String name, List<Type> effective, List<Type> notEffective, List<Type> noEffect) {
+	public Type(Long id, String name, String colorCode, List<Type> effective, List<Type> notEffective, List<Type> noEffect) {
 		this.id = id;
 		this.name = name;
+		this.colorCode = colorCode;
 		this.effective = effective;
 		this.notEffective = notEffective;
 		this.noEffect = noEffect;
 	}
 
-	public Type(String name) {
+	public Type(String name, String colorCode) {
 		this.name = name;
+		this.colorCode = colorCode;
 	}
-
-	public Type(Long id, String name) {
+	
+	public Type(Long id, String name, String colorCode) {
 		this.id = id;
 		this.name = name;
+		this.colorCode = colorCode;
 	}
 	
 	public Long getId() {
@@ -65,6 +73,14 @@ public class Type {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getColorCode() {
+		return colorCode;
+	}
+
+	public void setColorCode(String colorCode) {
+		this.colorCode = colorCode;
 	}
 
 	public List<Type> getEffective() {
