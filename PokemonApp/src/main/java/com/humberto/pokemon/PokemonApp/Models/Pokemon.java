@@ -32,6 +32,7 @@ public class Pokemon {
 	private Integer spDefense;
 	private Integer speed;
 	private Integer hp;
+	private Integer overallPts;
 	@ManyToMany
 	private List<Move> moves;
 	private Integer accuracy = 100;
@@ -56,6 +57,7 @@ public class Pokemon {
 		this.spDefense = spDefense;
 		this.speed = speed;
 		this.hp = hp;
+		this.overallPts = attack + defense + spAttack + spDefense + speed + hp;
 	}
 
 	public Pokemon(String name, String description, Double height, Double weight, Gender gender, String category,
@@ -72,6 +74,7 @@ public class Pokemon {
 		this.spDefense = spDefense;
 		this.speed = speed;
 		this.hp = hp;
+		this.overallPts = attack + defense + spAttack + spDefense + speed + hp;
 	}
 
 	public Pokemon(String name, String description, Double height, Double weight, Gender gender, List<Type> type,
@@ -90,6 +93,7 @@ public class Pokemon {
 		this.spDefense = spDefense;
 		this.speed = speed;
 		this.hp = hp;
+		this.overallPts = attack + defense + spAttack + spDefense + speed + hp;
 		this.moves = moves;
 	}
 
@@ -110,6 +114,7 @@ public class Pokemon {
 		this.spDefense = spDefense;
 		this.speed = speed;
 		this.hp = hp;
+		this.overallPts = attack + defense + spAttack + spDefense + speed + hp;
 		this.moves = moves;
 	}
 	
@@ -223,6 +228,14 @@ public class Pokemon {
 
 	public void setHp(Integer hp) {
 		this.hp = hp;
+	}
+
+	public Integer getOverallPts() {
+		return overallPts;
+	}
+
+	public void setOverallPts(Integer force) {
+		this.overallPts = force;
 	}
 
 	public List<Move> getMoves() {

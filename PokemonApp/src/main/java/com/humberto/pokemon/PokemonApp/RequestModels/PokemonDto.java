@@ -46,6 +46,7 @@ public class PokemonDto extends Dto{
 	@NotNull
 	@PositiveOrZero
 	private Integer fHp;
+	private Integer fOverallPts;
 	private Integer fAccuracy;
 	private Integer fEvasion;
 	
@@ -175,6 +176,14 @@ public class PokemonDto extends Dto{
 		this.fHp = fHp;
 	}
 	
+	public Integer getfOverallPts() {
+		return fOverallPts;
+	}
+
+	public void setfOverallPts(Integer fForce) {
+		this.fOverallPts = fForce;
+	}
+
 	public Integer getfAccuracy() {
 		return fAccuracy;
 	}
@@ -233,6 +242,7 @@ public class PokemonDto extends Dto{
 		this.fHp = pokemon.getHp();
 		this.fAccuracy = pokemon.getAccuracy();
 		this.fEvasion = pokemon.getEvasion();
+		this.fOverallPts = pokemon.getOverallPts();
 	}
 	
 }
